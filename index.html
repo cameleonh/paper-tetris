@@ -224,6 +224,13 @@ table.stats td#stLevel{font-family:var(--serif);font-style:italic;font-weight:60
 .ticker .inner em{font-style:normal;color:var(--red);padding:0 14px}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
+/* 크레딧 — 사람 손글씨 서명 느낌 */
+.credit{
+  margin-top:22px;text-align:right;
+  font-family:var(--serif);font-style:italic;font-size:13px;
+  color:rgba(244,240,230,.45);letter-spacing:.02em;
+}
+
 .footnotes{
   display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;
   font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--dim);
@@ -317,15 +324,15 @@ kbd{
 <main class="sheet">
   <div class="strip">
     <span class="logo">논문<em>테트리스</em></span>
-    <span class="live">submission open</span>
-    <span class="r">vol.1 — 2026.09</span>
+    <span class="live">언제든 시작할 수 있어요</span>
+    <span class="r">2026년 9월 · 제1호</span>
   </div>
 
   <header class="hero">
-    <div class="kicker">type specimen <em>n°1</em> — manuscript stacking studies</div>
+    <div class="kicker">읽어야 할 논문이 산더미인 당신께 <em>·</em> 논문 서랍 치료용</div>
     <h1><span class="thin">읽지 않는</span> 논문은<br><span class="it">쌓아서</span> <span class="rs">지운다</span></h1>
     <div class="deck">
-      <p>원고를 넣으면 <b>글자 하나하나가 테트로미노</b>가 됩니다. 가로줄을 완성해 지울 때마다 그 글자들은 기독 처리됩니다. 원고가 마감선에 닿기 전에 <b>완독 100%</b>. 안 되면 리젝입니다.</p>
+      <p>원고를 넣으면 <b>글자 하나하나가 블록</b>이 됩니다. 줄을 완성해서 지나가면, 그 글자들은 그제야 읽은 것이 됩니다. 마감선에 닿기 전에 100%를 채우면 Accept — 못 채우면, 아시죠.</p>
       <div class="steps">
         <div><span>01</span>원고를 넣는다</div>
         <div><span>02</span>글자가 블록이 된다</div>
@@ -336,10 +343,10 @@ kbd{
 
   <!-- 시작: paper 패널 -->
   <section class="panel paper" id="setup">
-    <div class="panel-head"><span>input — 원고 투입</span><span>fig.01</span></div>
+    <div class="panel-head"><span>원고 넣는 곳</span><span>fig.01</span></div>
     <div class="field">
-      <label for="srcText">manuscript — 논문 초록·본문·계약서 무엇이든</label>
-      <textarea id="srcText" placeholder="여기에 텍스트를 붙여넣거나, 아래에서 파일을 선택하세요."></textarea>
+      <label for="srcText">논문 초록이든, 본문이든, 계약서든 — 뭐든 좋습니다</label>
+      <textarea id="srcText" placeholder="빈 칸에 붙여넣으셔도 되고, 아래에서 파일을 골라도 돼요. 예쁘게 안 써도 됩니다."></textarea>
     </div>
     <div class="setup-actions">
       <label class="file-label">txt / pdf 업로드<input type="file" id="fileInput" accept=".txt,.pdf,text/plain,application/pdf"></label>
@@ -361,13 +368,13 @@ kbd{
           <canvas id="board"></canvas>
           <div class="stamp-layer" id="stampLayer"></div>
         </div>
-        <p class="fig-caption"><em>fig.01.</em> 잔여 원고량과 소진 속도의 관계. 이탤릭 글리프 = 낙하 문단, 라이트 글리프 = 적층 원고. 가로줄 완성 시 해당 줄은 기독 판정 후 소멸하며, 원고가 상단 마감선에 닿으면 심사는 종료된다.</p>
+        <p class="fig-caption"><em>fig.01.</em> 잔여 원고량과 소진 속도의 관계. 붉은 글자가 지금 내려오는 문단이고, 흰 글자가 아직 안 읽은 원고입니다. 줄이 꽉 차면 지나가고(그제야 읽은 것), 원고가 맨 위 막힌 선에 닿으면 심사는 끝납니다.</p>
       </div>
 
       <aside class="margin-notes">
         <div class="datablock">
           <div class="db-head"><span>reading progress</span><span>독서 진행률</span></div>
-          <div class="big-pct"><span id="pct">0.0</span><small> % read</small></div>
+          <div class="big-pct"><span id="pct">0.0</span><small> % 읽음</small></div>
           <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
           <div class="progress-meta"><span id="charsRead">0 / 0자</span><span id="sectionPos">1/7</span></div>
           <div class="stage-chip"><span class="no" id="stageNo">stage 1/7</span><span id="sectionName">Ⅰ. 서론 Intro</span></div>
@@ -427,12 +434,13 @@ kbd{
   <div class="ticker" id="ticker" style="display:none">
     <div class="inner" id="tickerInner"></div>
   </div>
+  <div class="credit">saju.blog에서 만들었습니다 — 논문은 쌓아서 지우는 것</div>
   <div class="toast" id="toast"></div>
 </main>
 
 <div class="overlay" id="overlay">
   <div class="overlay-card">
-    <div class="ov-head"><span>decision letter</span><span id="ovHeadNo">case 2026-0904</span></div>
+    <div class="ov-head"><span>심사 결과 통지</span><span id="ovHeadNo">case 2026-0904</span></div>
     <div class="overlay-stamp" id="ovStamp">rejected</div>
     <div class="ov-record" id="ovRecord">new best — 신기록</div>
     <h2 id="ovTitle">게재 거부됨</h2>
@@ -1008,9 +1016,9 @@ function gameOver(won){
   $("ovTitle").textContent = won? "완독 — 게재 확정" : "게재 거부됨";
   $("ovSub").textContent = won
     ? (G.phraseSpans
-        ? "상용구만으로 논문 한 편을 조립했습니다. 심사위원도 눈치채지 못했습니다."
-        : "원고의 모든 글자를 지워냈습니다. 심사위원도 울고 갈 완독입니다.")
-    : "원고가 마감선을 돌파했습니다. 종료 사유: 원고 적체 (manuscript overload).";
+        ? "상용구만으로 논문 한 편을 조립하셨습니다. 심사위원도 눈치채지 못했어요."
+        : "원고의 모든 글자를 지워내셨습니다. 심사위원도 울고 갈 완독이에요.")
+    : "원고가 맨 위 막힌 선을 뚫고 말았어요. 원고 적체(manuscript overload) — 다음 투고는 더 잘될 겁니다.";
   $("ovRecord").style.display = isRecord && pct>0 ? "inline-block" : "none";
   $("ovPct").textContent = pct.toFixed(1)+"%";
   $("ovChars").textContent = `${G.readSet.size} / ${G.total}자`;
@@ -1240,7 +1248,7 @@ function updateHUD(){
   $("stBest").textContent = best? best.toFixed(1)+"%" : "—";
   $("sectionName").textContent = LEVEL_NAMES[G.level-1];
   $("sectionPos").textContent = `${G.level}/${LEVEL_NAMES.length}`;
-  $("stageNo").textContent = `stage ${G.level}/${LEVEL_NAMES.length}`;
+  $("stageNo").textContent = `${G.level}/${LEVEL_NAMES.length} 단계`;
   drawMini(nextCtx, nextCv, G.nxt);
   drawMini(holdCtx, holdCv, G.hold);
   updateTicker(pct);
@@ -1249,12 +1257,12 @@ function updateTicker(pct){
   const inner = $("tickerInner");
   const recent = Array.from(document.querySelectorAll("#verdictList .verdict-item")).slice(0,3).map(v=>v.textContent);
   const parts = [
-    `read ${pct.toFixed(1)}%`,
+    `읽은 만큼 ${pct.toFixed(1)}%`,
     `${G.readSet.size.toLocaleString()}/${G.total.toLocaleString()}자`,
-    `lines ${G.lines}`,
-    `stage ${G.level} — ${LEVEL_NAMES[G.level-1]}`,
-    recent.length? recent.join(" · ") : "심사 대기 중",
-    "read or reject",
+    `줄 ${G.lines}`,
+    `${LEVEL_NAMES[G.level-1]}`,
+    recent.length? recent.join(" · ") : "아직 심사 대기 중",
+    "읽자, read or reject",
   ];
   const seg = parts.map(p=>`<em>·</em>${p}`).join("");
   inner.innerHTML = seg + seg;
@@ -1385,7 +1393,7 @@ function togglePause(){
   if(!G||G.over) return;
   G.paused=!G.paused;
   $("btnPause").textContent = G.paused? "재개":"일시정지";
-  if(G.paused) showStamp("hold — 일시정지", false, true);
+  if(G.paused) showStamp("잠시 쉬어가기", false, true);
 }
 let bgmOn = true;
 function toggleBGM(){
