@@ -1,4 +1,4 @@
-# 논문 테트리스 — Read or Reject
+# 곰국 테트리스 — Read or Reject
 
 **라이브: https://stack.saju.blog**
 

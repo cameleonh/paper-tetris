@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>논문 테트리스 — Read or Reject</title>
+<title>곰국 테트리스 — Read or Reject</title>
 <meta name="description" content="읽기 싫은 원고는 쌓아서 지운다. 논문 텍스트가 테트로미노가 되는 강제 완독 게임. KCI·SSCI 상용구 모드 지원.">
 <meta name="theme-color" content="#0a0a0a">
 <meta property="og:type" content="website">
-<meta property="og:title" content="논문 테트리스 — Read or Reject">
+<meta property="og:title" content="곰국 테트리스 — Read or Reject">
 <meta property="og:description" content="원고를 넣으면 글자가 블록이 된다. 줄을 지우면 읽은 것이다. 완독 100% = Accept, 천장 도달 = Reject.">
 <meta property="og:image" content="https://stack.saju.blog/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="논문 테트리스 — 읽지 않는 논문은 쌓아서 지운다">
+<meta property="og:image:alt" content="곰국 테트리스 — 읽지 않는 논문은 쌓아서 지운다">
 <meta property="og:url" content="https://stack.saju.blog/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://stack.saju.blog/og.png">
@@ -24,7 +24,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   논문 테트리스 — KLIM-GRAMMAR edition
+   곰국 테트리스 — KLIM-GRAMMAR edition
    실측한 klim.co.nz 문법: 블랙 베이스·플랫 컬러 패널·대형 세리프
    디스플레이·소문자 와이드 트래킹 라벨·호버 이탤릭·가는 룰
    ============================================================ */
@@ -331,7 +331,7 @@ kbd{
 
 <main class="sheet">
   <div class="strip">
-    <span class="logo">논문<em>테트리스</em></span>
+    <span class="logo">곰국<em>테트리스</em></span>
     <span class="live">언제든 시작할 수 있어요</span>
     <span class="r">2026년 9월 · 제1호</span>
   </div>
@@ -469,7 +469,7 @@ kbd{
 
 <script>
 /* ============================================================
-   논문 테트리스 — KLIM-GRAMMAR edition
+   곰국 테트리스 — KLIM-GRAMMAR edition
    로직: v1.2 검증본 불변 / 비주얼: klim.co.nz 실측 문법
    ============================================================ */
 "use strict";
@@ -1430,7 +1430,7 @@ $("btnShare").addEventListener("click", async ()=>{
   if(!G) return;
   const pct = (100*G.readSet.size/Math.max(1,G.total)).toFixed(1);
   const mode = G.modeStyle==="kci" ? "KCI 상용구" : (G.modeStyle==="ssci" ? "SSCI 상용구" : "내 원고");
-  const txt = `논문 테트리스 — ${mode} ${pct}% 완독 · ${G.lines}줄 · ${G.won?"ACCEPTED":"REJECTED"} · ${LEVEL_NAMES[G.level-1]}`;
+  const txt = `곰국 테트리스 — ${mode} ${pct}% 완독 · ${G.lines}줄 · ${G.won?"ACCEPTED":"REJECTED"} · ${LEVEL_NAMES[G.level-1]}`;
   const btn = $("btnShare");
   const done = ok => { btn.textContent = ok? "복사됨 ✓":"복사 실패"; setTimeout(()=>btn.textContent="결과 복사",1600); };
   try{ await navigator.clipboard.writeText(txt); done(true); }

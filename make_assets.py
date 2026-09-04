@@ -34,11 +34,11 @@ def glyph(ch, size, color, fpath=BATANG_BOLD):
     bbox = tmp.getbbox()
     return tmp.crop(bbox) if bbox else tmp
 
-# ── 파비콘: 검은 사각 + 붉은 이탤릭 '논' + 아이보리 밑줄 ──
+# ── 파비콘: 검은 사각 + 붉은 이탤릭 '곰' + 아이보리 밑줄 ──
 def make_icon(size):
     img = Image.new("RGBA",(size,size), BLACK+(255,))
     d = ImageDraw.Draw(img)
-    g = shear(glyph("논", int(size*.72), RED+(255,)), k=0.14)
+    g = shear(glyph("곰", int(size*.72), RED+(255,)), k=0.14)
     gw,gh = g.size
     scale = min(size*.62/gw, size*.62/gh, 1.6)
     g = g.resize((int(gw*scale), int(gh*scale)), Image.LANCZOS)
@@ -90,9 +90,12 @@ d.rectangle([60,430,60+g_it.width,436], fill=RED)
 g_rd = glyph("지운다", 122, RED)
 img.paste(g_rd,(78+g_it.width,290),g_rd)
 
-# 하단: 도메인 + 슬로건
+# 하단: 도메인 + 슬로건 + 브랜드
 d.text((64,530), "stack.saju.blog", font=font(MONO,34), fill=(244,240,230,200))
 d.text((64,578), "논문은 쌓아서 지우는 것이다 — 완독 100% = Accept", font=font(BATANG_MED,26), fill=(244,240,230,120))
+brand = font(BATANG_MED, 44)
+bb = d.textbbox((0,0), "곰국 테트리스", font=brand)
+d.text((W-64-(bb[2]-bb[0]), 556), "곰국 테트리스", font=brand, fill=(244,240,230,225))
 
 img.save(os.path.join(OUT,"og.png"), quality=95)
 
