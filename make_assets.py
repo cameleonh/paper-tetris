@@ -95,4 +95,10 @@ d.text((64,530), "stack.saju.blog", font=font(MONO,34), fill=(244,240,230,200))
 d.text((64,578), "논문은 쌓아서 지우는 것이다 — 완독 100% = Accept", font=font(BATANG_MED,26), fill=(244,240,230,120))
 
 img.save(os.path.join(OUT,"og.png"), quality=95)
-print("saved:", os.listdir(OUT))
+
+# 루트에도 복사(로컬 서버·문서루트 패리티 — index.html이 /favicon.png 루트 경로를 참조)
+import shutil
+ROOT = os.path.dirname(__file__)
+for f in ["favicon.png","favicon-512.png","apple-touch-icon.png","og.png"]:
+    shutil.copy2(os.path.join(OUT,f), os.path.join(ROOT,f))
+print("saved:", os.listdir(OUT), "+ copied to project root")

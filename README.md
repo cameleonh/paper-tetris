@@ -1,5 +1,7 @@
 # 논문 테트리스 — Read or Reject
 
+**라이브: https://stack.saju.blog**
+
 원고의 글자 하나하나가 테트로미노 블록이 되는 강제 완독 게임.
 가로줄을 완성해 지우면 그 글자들은 '기독(旣讀)' 처리된다.
 완독 100% = **Accept**, 원고가 천장(마감선)에 닿으면 **Reject**.
@@ -26,15 +28,23 @@ URL에 `#dev` 를 붙이면 디버그 훅(`window.__pt`: 상태 조회, `forceCl
 에러 수집)이 활성화된다. 배포판 기본 주소에서는 노출되지 않는다.
 경고 로그는 `console.warn("paper-tetris:", ...)` 접두사로 통일.
 
-## 배포 (Vercel)
+## 배포
+
+**현재 운영 중**: AWS Lightsail(43.201.117.119) Apache —
+문서루트 `/var/www/stack.saju.blog`, 가상호스트 `sites-available/stack.saju.blog.conf`,
+Let's Encrypt 인증서(certbot 자동갱신), HTTP→HTTPS 리다이렉트, 보안 헤더 6종.
+DNS(Spaceship): `stack` CNAME → `saju.blog`.
+
+갱신 절차: `index.html` 수정 → 서버에 업로드(scp) → 끝(정적 파일이라 재시작 불필요):
 
 ```bash
-cd paper_tetris
-npx vercel --prod        # vercel 로그인 후
+scp index.html admin@43.201.117.119:/tmp/
+ssh admin@43.201.117.119 "sudo mv /tmp/index.html /var/www/stack.saju.blog/ && sudo chown www-data:www-data /var/www/stack.saju.blog/index.html"
 ```
 
-또는 https://vercel.com/new 에서 이 폴더를 드래그&드롭.
-정적 단일 파일이라 설정 파일 불필요. OG 태그 포함(공유 시 제목·설명 표시).
+브랜드 에셋(파비콘·OG)은 `python make_assets.py`로 재생성(결과가 프로젝트 루트에도 복사됨).
+
+Vercel 대안(참고): `npx vercel --prod` 또는 vercel.com/new에서 폴더 import.
 
 ## 디자인
 
